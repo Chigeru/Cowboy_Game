@@ -117,7 +117,6 @@ namespace Cowboy_game
 
         void FireShot(Cowboy cowboy, Cowboy loser, int hitChance)
         {
-            Console.WriteLine($"{cowboy.name}: {hitChance}");
             if (hitChance > 5)
             {
                 if (cowboy.wounded)
@@ -132,7 +131,6 @@ namespace Cowboy_game
                         point.Margin = new Thickness(5, 0, 5, 0);
                         point.Fill = new SolidColorBrush(Color.FromRgb(200,0,128));
                         StackPanel pointHolder = (StackPanel)VisualTreeHelper.GetChild(PointContainer, cowboy.playerID);
-                        Console.WriteLine(cowboy.playerID);
 
                         pointHolder.Children.Add(point);
                         if (loser.wounded) { GameEnd(cowboy); }
