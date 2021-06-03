@@ -5,18 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Cowboy_game"
         mc:Ignorable="d"
-        Title="userStartInfo" Height="300" Width="300" 
+        Title="userStartInfo" Height="300" Width="400" 
         WindowStartupLocation="CenterScreen">
     <Grid>
         <StackPanel HorizontalAlignment="Center">
             <Label x:Name="label" Content="CowBoy Duel" HorizontalAlignment="center" VerticalAlignment="Top" FontSize="20" FontWeight="Bold"/>
             <TextBlock x:Name="txtGameInfo" HorizontalAlignment="Center" TextAlignment="Center" TextWrapping="Wrap" Text="Game information" VerticalAlignment="Top"/>
-            <StackPanel Orientation="Horizontal" Margin="0,20,0,10">
+            <StackPanel Orientation="Horizontal" Margin="0,20,0,10" HorizontalAlignment="Center">
                 <Label x:Name="label1" Content="Name" HorizontalAlignment="Center" Margin="0,0,20,0" VerticalAlignment="Top"/>
-                <TextBox x:Name="txtPlayerName" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                <TextBox x:Name="txtPlayerName" HorizontalAlignment="Center" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
             </StackPanel>
-            <RadioButton x:Name="Bandit0" Content="Easy" GroupName="dificulty" HorizontalAlignment="Left" Margin="30,0,0,0" VerticalAlignment="Top"/>
-            <RadioButton x:Name="Bandit1" Content="Hard" GroupName="dificulty" HorizontalAlignment="Left" Margin="30,5,0,20" VerticalAlignment="Top"/>
+            <RadioButton x:Name="Bandit0" Content="Easy - Speedy Pete" GroupName="dificulty" HorizontalAlignment="Left" Margin="100,0,0,0" VerticalAlignment="Top"/>
+            <RadioButton x:Name="Bandit1" Content="Hard - Tricky Mike" GroupName="dificulty" HorizontalAlignment="Left" Margin="100,5,0,20" VerticalAlignment="Top"/>
             <Button x:Name="button" Content="Start" HorizontalAlignment="Center" VerticalAlignment="Top" Width="75" Click="button_Click"/>
 
         </StackPanel>

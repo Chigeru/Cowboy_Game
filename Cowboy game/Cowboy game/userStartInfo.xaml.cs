@@ -24,7 +24,8 @@ namespace Cowboy_game
             InitializeComponent();
             txtGameInfo.Text = "Game Information:\n" +
                 "Skyd banditen når klokken slår 12.00.\n" +
-                "Spillet er bedst ud af 3.\n";
+                "Spillet er bedst ud af 3.\n" +
+                "Ingen er perfekt til ramme (specielt ikke hvis de er såret)";
             
         }
 

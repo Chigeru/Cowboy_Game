@@ -27,18 +27,18 @@ namespace Cowboy_game
         Random rand = new Random();
         Cowboy player1;
         Cowboy player2;
-        string dificulty = "";
+        string difficulty = "";
 
         public MainWindow(string playerName, string bandit)
         {
             InitializeComponent();
-            dificulty = bandit;
+            
+            difficulty = bandit.Substring(0, 4);
             player1 = new Cowboy(playerName);
-            player2 = new Cowboy("The Bandit");
-
+            player2 = new Cowboy(bandit.Substring(7, bandit.Length-7));
 
             // Indsætter den baggrund med den valgte bandit på en sketchy måde
-            gridHolder.Background = new ImageBrush(new BitmapImage(new Uri(BaseUriHelper.GetBaseUri(this), "Images/Western Background - " + dificulty + ".jpg")));
+            gridHolder.Background = new ImageBrush(new BitmapImage(new Uri(BaseUriHelper.GetBaseUri(this), "Images/Western Background - " + difficulty + ".jpg")));
 
             // Ved en svære bandit - vil knappen først komme frem når man kan skyde + random location
             HardButtonRelocation();
@@ -47,8 +47,8 @@ namespace Cowboy_game
             timer.Tick += timer_Tick;
             timer.Start();
 
-            if(dificulty.ToLower() == "hard") { NPCtimer.Interval = TimeSpan.FromSeconds(1); } 
-            else { NPCtimer.Interval = TimeSpan.FromMilliseconds(300); }
+            if(difficulty.ToLower() == "hard") { NPCtimer.Interval = TimeSpan.FromMilliseconds(800); } 
+            else { NPCtimer.Interval = TimeSpan.FromMilliseconds(200); }
             
             NPCtimer.Tick += Bandit_Tick;
 
@@ -98,12 +98,12 @@ namespace Cowboy_game
         {
             NPCtimer.Stop();
             timeRound = rand.Next(4, 7);
-            if (dificulty.ToLower() == "hard") { btnFire.Visibility = Visibility.Hidden; }
+            if (difficulty.ToLower() == "hard") { btnFire.Visibility = Visibility.Hidden; }
         }
 
         void HardButtonRelocation()
         {
-            if (dificulty.ToLower() == "hard")
+            if (difficulty.ToLower() == "hard")
             {
                 btnFire.Margin = new Thickness(rand.Next(20, 400), rand.Next(20, 400), 0, 0);
             }
@@ -118,19 +118,23 @@ namespace Cowboy_game
         void FireShot(Cowboy cowboy, Cowboy loser, int hitChance)
         {
             Console.WriteLine($"{cowboy.name}: {hitChance}");
-            if (hitChance > 10)
+            if (hitChance > 5)
             {
                 if (cowboy.wounded)
                 {
-                    if (hitChance > 30)
+                    if (hitChance > 25)
                     {
                         //cowboy.Fire();      // Grafik
-                        
+                        // Indsætter point
                         Ellipse point = new Ellipse();
                         point.Height = 30;
                         point.Width = 30;
                         point.Margin = new Thickness(5, 0, 5, 0);
-                        
+                        point.Fill = new SolidColorBrush(Color.FromRgb(200,0,128));
+                        StackPanel pointHolder = (StackPanel)VisualTreeHelper.GetChild(PointContainer, cowboy.playerID);
+                        Console.WriteLine(cowboy.playerID);
+
+                        pointHolder.Children.Add(point);
                         if (loser.wounded) { GameEnd(cowboy); }
                         else { loser.wounded = true; }
                         ResetTimer();
@@ -140,6 +144,15 @@ namespace Cowboy_game
                 else
                 {
                     // cowboy.Fire();       // Grafik
+                    // Indsætter point
+                    Ellipse point = new Ellipse();
+                    point.Height = 30;
+                    point.Width = 30;
+                    point.Margin = new Thickness(5, 0, 5, 0);
+                    point.Fill = new SolidColorBrush(Color.FromRgb(200, 0, 128));
+                    StackPanel pointHolder = (StackPanel)VisualTreeHelper.GetChild(PointContainer, cowboy.playerID);
+                    pointHolder.Children.Add(point);
+                    
                     if (loser.wounded) { GameEnd(cowboy); }
                     else { loser.wounded = true; }
                     ResetTimer();

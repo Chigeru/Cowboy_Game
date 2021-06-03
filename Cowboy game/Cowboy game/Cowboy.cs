@@ -10,13 +10,15 @@ namespace Cowboy_game
     {
         public string name { get; set; }
         public bool wounded { get; set; }
-        int points { get; set; }
+        static int amountOfPlayers = 0;
+        public int playerID { get; set; }
 
         public Cowboy(string name)
         {
             this.name = name;
             this.wounded = false;
-            this.points = 0;
+            this.playerID = amountOfPlayers;
+            amountOfPlayers++;
         }
 
         public void Fire()

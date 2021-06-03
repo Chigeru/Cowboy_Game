@@ -112,7 +112,7 @@
     <Resource Include="Images\Western Background - Cowboy.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Missed.jpg" />
+    <Resource Include="Images\Missed.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Western Background - hard.jpg" />

@@ -23,16 +23,14 @@
             </Label.RenderTransform>
         </Label>
         <Button x:Name="btnFire" Content="Fire" HorizontalAlignment="Left" Margin="344,371,0,0" VerticalAlignment="Top" Width="82" BorderBrush="#FF400330" Background="#FF551541" Foreground="#FFFDFDFD" Height="30" Click="btnFire_Click"/>
-        <Image x:Name="image" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="100" Margin="90,145,0,0" Source="Missed.jpg" Visibility="Hidden"/>
-        <StackPanel x:Name="player1_Score" Margin="-500,350,0,0" Height="30" Width="100" Orientation="Horizontal">
-            <Ellipse Fill="#FFE800FF" HorizontalAlignment="Left" Height="30" Margin="5,0,5,0" Stroke="Black" VerticalAlignment="Top" Width="30"/>
-            <Ellipse Fill="#FFE800FF" HorizontalAlignment="Left" Height="30" Margin="5,0,5,0" Stroke="Black" VerticalAlignment="Top" Width="30"/>
+        <Image x:Name="image" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="100" Margin="90,145,0,0" Source="Images/Missed.jpg" Visibility="Hidden"/>
+        <StackPanel x:Name="PointContainer" Orientation="Horizontal" Width="600" Height="50" Margin="0,350,0,0">
+            <StackPanel x:Name="player1_Score" Height="30" Width="100" Orientation="Horizontal"/>
+            <StackPanel x:Name="player2_Score" Height="30" Width="100" Orientation="Horizontal" Margin="400,0,0,0"/>
+
+
         </StackPanel>
-        <StackPanel x:Name="player2_Score" Margin="500,350,0,0" Height="30" Width="100" Orientation="Horizontal">
-            <Ellipse Fill="#FFE800FF" HorizontalAlignment="Left" Height="30" Margin="5,0,5,0" Stroke="Black" VerticalAlignment="Top" Width="30"/>
-            <Ellipse Fill="#FFE800FF" HorizontalAlignment="Left" Height="30" Margin="5,0,5,0" Stroke="Black" VerticalAlignment="Top" Width="30"/>
-        </StackPanel>
-        
+
 
     </Grid>
 </Window>
