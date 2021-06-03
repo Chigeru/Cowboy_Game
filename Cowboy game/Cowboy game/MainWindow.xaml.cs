@@ -103,7 +103,7 @@ namespace Cowboy_game
         {
             if (difficulty.ToLower() == "hard")
             {
-                btnFire.Margin = new Thickness(rand.Next(20, 400), rand.Next(20, 400), 0, 0);
+                btnFire.Margin = new Thickness(rand.Next(20, 400), rand.Next(20, 380), 0, 0);
             }
         }
 
