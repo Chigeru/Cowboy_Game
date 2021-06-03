@@ -1,0 +1,38 @@
+﻿<Window x:Class="Cowboy_game.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Cowboy_game"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen">
+    <Grid x:Name="gridHolder">
+        <Grid.Background>
+            <ImageBrush ImageSource="Images/Western Background - easy.jpg"/>
+        </Grid.Background>
+        <Label x:Name="lblClock" Content="Timer" HorizontalContentAlignment="Center" Margin="410,252,302,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Width="82" FontWeight="Bold" FontSize="14">
+            <Label.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-13.615"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Label.RenderTransform>
+        </Label>
+        <Button x:Name="btnFire" Content="Fire" HorizontalAlignment="Left" Margin="344,371,0,0" VerticalAlignment="Top" Width="82" BorderBrush="#FF400330" Background="#FF551541" Foreground="#FFFDFDFD" Height="30" Click="btnFire_Click"/>
+        <Image x:Name="image" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="100" Margin="90,145,0,0" Source="Missed.jpg" Visibility="Hidden"/>
+        <StackPanel x:Name="player1_Score" Margin="-500,350,0,0" Height="30" Width="100" Orientation="Horizontal">
+            <Ellipse Fill="#FFE800FF" HorizontalAlignment="Left" Height="30" Margin="5,0,5,0" Stroke="Black" VerticalAlignment="Top" Width="30"/>
+            <Ellipse Fill="#FFE800FF" HorizontalAlignment="Left" Height="30" Margin="5,0,5,0" Stroke="Black" VerticalAlignment="Top" Width="30"/>
+        </StackPanel>
+        <StackPanel x:Name="player2_Score" Margin="500,350,0,0" Height="30" Width="100" Orientation="Horizontal">
+            <Ellipse Fill="#FFE800FF" HorizontalAlignment="Left" Height="30" Margin="5,0,5,0" Stroke="Black" VerticalAlignment="Top" Width="30"/>
+            <Ellipse Fill="#FFE800FF" HorizontalAlignment="Left" Height="30" Margin="5,0,5,0" Stroke="Black" VerticalAlignment="Top" Width="30"/>
+        </StackPanel>
+        
+
+    </Grid>
+</Window>
