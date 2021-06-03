@@ -32,10 +32,10 @@ namespace Cowboy_game
         public MainWindow(string playerName, string bandit)
         {
             InitializeComponent();
-            
+
             difficulty = bandit.Substring(0, 4);
             player1 = new Cowboy(playerName);
-            player2 = new Cowboy(bandit.Substring(7, bandit.Length-7));
+            player2 = new Cowboy(bandit.Substring(7, bandit.Length - 7));
 
             // Indsætter den baggrund med den valgte bandit på en sketchy måde
             gridHolder.Background = new ImageBrush(new BitmapImage(new Uri(BaseUriHelper.GetBaseUri(this), "Images/Western Background - " + difficulty + ".jpg")));
@@ -47,21 +47,13 @@ namespace Cowboy_game
             timer.Tick += timer_Tick;
             timer.Start();
 
-            if(difficulty.ToLower() == "hard") { NPCtimer.Interval = TimeSpan.FromMilliseconds(800); } 
-            else { NPCtimer.Interval = TimeSpan.FromMilliseconds(200); }
-            
+            if (difficulty.ToLower() == "hard") { NPCtimer.Interval = TimeSpan.FromMilliseconds(800); }
+            else { NPCtimer.Interval = TimeSpan.FromMilliseconds(300); }
+
             NPCtimer.Tick += Bandit_Tick;
 
-
-
-            lblClock.Content = "Wait for highnoon";
+            lblClock.Content = "Wait";
             ResetTimer();
-            timeRound = rand.Next(2, 4);
-
-            //Image missed = new Image();
-            //missed.Source = new BitmapImage(new Uri("Missed"));
-            //missed.Margin = new Thickness(90, 145, 0, 0);
-
 
         }
 
@@ -96,9 +88,15 @@ namespace Cowboy_game
         // reset bruges når en spiller er ramt
         public void ResetTimer()
         {
+            Image missed = (Image)VisualTreeHelper.GetChild(gridHolder, 3);
+            Image missed1 = (Image)VisualTreeHelper.GetChild(gridHolder, 4);
+            missed.Source = null;
+            missed1.Source = null;
+            timer.Stop();
             NPCtimer.Stop();
-            timeRound = rand.Next(4, 7);
+            timeRound = rand.Next(2, 4);
             if (difficulty.ToLower() == "hard") { btnFire.Visibility = Visibility.Hidden; }
+            timer.Start();
         }
 
         void HardButtonRelocation()
@@ -129,7 +127,7 @@ namespace Cowboy_game
                         point.Height = 30;
                         point.Width = 30;
                         point.Margin = new Thickness(5, 0, 5, 0);
-                        point.Fill = new SolidColorBrush(Color.FromRgb(200,0,128));
+                        point.Fill = new SolidColorBrush(Color.FromRgb(200, 0, 128));
                         StackPanel pointHolder = (StackPanel)VisualTreeHelper.GetChild(PointContainer, cowboy.playerID);
 
                         pointHolder.Children.Add(point);
@@ -137,6 +135,11 @@ namespace Cowboy_game
                         else { loser.wounded = true; }
                         ResetTimer();
                         // grafik hvis man rammer ved siden af
+                    }
+                    else
+                    {
+                        Image missed = (Image)VisualTreeHelper.GetChild(gridHolder, cowboy.playerID + 3);
+                        missed.Source = new BitmapImage(new Uri(BaseUriHelper.GetBaseUri(this), "Images/Missed.jpg"));
                     }
                 }
                 else
@@ -150,11 +153,16 @@ namespace Cowboy_game
                     point.Fill = new SolidColorBrush(Color.FromRgb(200, 0, 128));
                     StackPanel pointHolder = (StackPanel)VisualTreeHelper.GetChild(PointContainer, cowboy.playerID);
                     pointHolder.Children.Add(point);
-                    
+
                     if (loser.wounded) { GameEnd(cowboy); }
                     else { loser.wounded = true; }
                     ResetTimer();
                 }
+            }
+            else
+            {
+                Image missed = (Image)VisualTreeHelper.GetChild(gridHolder, cowboy.playerID + 3);
+                missed.Source = new BitmapImage(new Uri(BaseUriHelper.GetBaseUri(this), "Images/Missed.jpg"));
             }
 
             HardButtonRelocation();
